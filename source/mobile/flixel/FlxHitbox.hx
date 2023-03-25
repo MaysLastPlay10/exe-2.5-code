@@ -7,12 +7,6 @@ import openfl.display.BitmapData;
 import openfl.display.Shape;
 import mobile.flixel.FlxButton;
 
-enum FlxHitboxType
-{
-	DEFAULT;
-	SPACE;
-}
-
 /**
  * A zone with 4 hint's (A hitbox).
  * It's really easy to customize the layout.
@@ -23,36 +17,21 @@ class FlxHitbox extends FlxSpriteGroup
 {
 	public var buttonLeft:FlxButton = new FlxButton(0, 0);
 	public var buttonDown:FlxButton = new FlxButton(0, 0);
-	public var buttonDodge:FlxButton = new FlxButton(0, 0); //real
 	public var buttonUp:FlxButton = new FlxButton(0, 0);
 	public var buttonRight:FlxButton = new FlxButton(0, 0);
-	
-	public var altpos:Bool = false;
 	
 	/**
 	 * Create the zone.
 	 */
-	public function new(type:FlxHitboxType)
+	public function new()
 	{
-		//altpos = ClientPrefs.dodgepos; not yet
 
 		super();
 
-		switch (type)
-		{
-
-    case DEFAULT:
     add(buttonLeft = createHint(0, Std.int(FlxG.height / 4), Std.int(FlxG.width / 4), Std.int(FlxG.height / 4) * 3, 0xFF00FF));
     add(buttonDown = createHint(FlxG.width / 4, Std.int(FlxG.height / 4), Std.int(FlxG.width / 4), Std.int(FlxG.height / 4) * 3, 0x00FFFF));
     add(buttonUp = createHint(FlxG.width / 2, Std.int(FlxG.height / 4), Std.int(FlxG.width / 4), Std.int(FlxG.height / 4) * 3, 0x00FF00));
     add(buttonRight = createHint((FlxG.width / 2) + (FlxG.width / 4), Std.int(FlxG.height / 4), Std.int(FlxG.width / 4), Std.int(FlxG.height / 4) * 3, 0xFF0000));
- 
-    case SPACE:
-    add(buttonLeft = createHint(0, 0, Std.int(FlxG.width / 5), FlxG.height, 0xFF00FF));
-		add(buttonDown = createHint(FlxG.width / 5, 0, Std.int(FlxG.width / 5), FlxG.height, 0x00FFFF));
-		add(buttonDodge = createHint(FlxG.width / 2.5, 0, Std.int(FlxG.width / 5), FlxG.height, 0xFFD000));
-		add(buttonUp = createHint(FlxG.width / 2.5 + (FlxG.width / 5), 0, Std.int(FlxG.width / 4), FlxG.height, 0x00FF00));
-		add(buttonRight = createHint(FlxG.width / 2.5 * 2, 0, Std.int(FlxG.width / 4), FlxG.height, 0xFF0000));
 		}
 
 		scrollFactor.set();
@@ -67,7 +46,6 @@ class FlxHitbox extends FlxSpriteGroup
 
 		buttonLeft = FlxDestroyUtil.destroy(buttonLeft);
 		buttonUp = FlxDestroyUtil.destroy(buttonUp);
-		buttonDodge = FlxDestroyUtil.destroy(buttonDodge); //omg
 		buttonDown = FlxDestroyUtil.destroy(buttonDown);
 		buttonRight = FlxDestroyUtil.destroy(buttonRight);
 	}
