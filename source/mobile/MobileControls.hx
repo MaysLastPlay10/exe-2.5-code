@@ -18,7 +18,7 @@ class MobileControls extends FlxSpriteGroup
 	public var virtualPad:FlxVirtualPad;
 	public var hitbox:FlxHitbox;
 
-	public function new(usesDodge:Bool = false)
+	public function new()
 	{
 		super();
 
@@ -37,7 +37,7 @@ class MobileControls extends FlxSpriteGroup
 				virtualPad = new FlxVirtualPad(BOTH_FULL, NONE);
 				add(virtualPad);
 			case 'Hitbox':
-				hitbox = new FlxHitbox(usesDodge ? SPACE : DEFAULT);
+				hitbox = new FlxHitbox();
 				add(hitbox);
 			case 'Keyboard': // do nothing
 		}
