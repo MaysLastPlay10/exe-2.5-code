@@ -70,11 +70,8 @@ import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 import flixel.tweens.FlxTween.FlxTweenManager;
 import flixel.system.scaleModes.StageSizeScaleMode;
 import flixel.system.scaleModes.BaseScaleMode;
-<<<<<<< Updated upstream
-=======
 import mobile.MobileControls;
 
->>>>>>> Stashed changes
 using StringTools;
 
 #if desktop
@@ -2285,8 +2282,6 @@ class PlayState extends MusicBeatState
 		blackFuck.cameras = [camOther];
 		topBar.cameras = [camOther];
 		bottomBar.cameras = [camOther];
-<<<<<<< Updated upstream
-=======
 		
 		#if mobile
 			if (SONG.song.toLowerCase()=='triple-trouble') {
@@ -2296,7 +2291,6 @@ class PlayState extends MusicBeatState
 			}
 			mobileControls.visible = false;
 		#end
->>>>>>> Stashed changes
 
 		var centerP = new FlxSprite(0, 0);
 		centerP.screenCenter(XY);
@@ -2999,13 +2993,10 @@ class PlayState extends MusicBeatState
 			return;
 		}
 
-<<<<<<< Updated upstream
-=======
 		#if mobile
 				mobileControls.visible = true;
 		#end
 
->>>>>>> Stashed changes
 		inCutscene = false;
 		var ret:Dynamic = callOnLuas('onStartCountdown', []);
 		if (ret != FunkinLua.Function_Stop)
@@ -4886,10 +4877,7 @@ class PlayState extends MusicBeatState
 			var space = controls.NOTE_SPACE;
 			var holdControls:Array<Bool> = [left, down, up, right];
 			if (SONG.isRing)
-<<<<<<< Updated upstream
-				holdControls = [left, down, FlxG.keys.pressed.SPACE, up, right];
-=======
-				holdControls = [left, down, space, up, right];
+			holdControls = [left, down, space, up, right];
 		
 	       if(ClientPrefs.mariomaster) //dont ask, thanks
 		{
@@ -4903,7 +4891,6 @@ class PlayState extends MusicBeatState
 				}
 			}
 		}
->>>>>>> Stashed changes
 
 			if (holdControls.contains(true) && /*!boyfriend.stunned && */ generatedMusic)
 			{
@@ -5972,13 +5959,11 @@ class PlayState extends MusicBeatState
 			FlxG.mouse.visible = false;
 			FlxG.mouse.unload();
 		}
-<<<<<<< Updated upstream
-=======
+		
 		#if mobile
 				mobileControls.visible = false;
 		#end
 
->>>>>>> Stashed changes
 		timeBarBG.visible = false;
 		timeBar.visible = false;
 		timeTxt.visible = false;
