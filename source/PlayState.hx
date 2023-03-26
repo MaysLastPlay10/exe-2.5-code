@@ -66,7 +66,7 @@ import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 import flixel.tweens.FlxTween.FlxTweenManager;
 import flixel.system.scaleModes.StageSizeScaleMode;
 import flixel.system.scaleModes.BaseScaleMode;
-//import mobile.flixel.FlxHitbox;
+import mobile.MobileControls;
 
 using StringTools;
 
@@ -2177,7 +2177,7 @@ class PlayState extends MusicBeatState
 
 		#if mobile
 		if (SONG.song.toLowerCase()=='triple-trouble') {
-		addMobileControls(usesDodge);
+		addMobileControls(true);
 		}else{
 		addMobileControls(false);  
 		}
@@ -4743,8 +4743,6 @@ class PlayState extends MusicBeatState
 				holdControls = [left, down, FlxG.keys.pressed.SPACE, up, right];
 	       if(ClientPrefs.mariomaster) //dont ask, thanks
 		{
-			if (SONG.isRing)
-				holdControls = [controls.NOTE_LEFT_P, controls.NOTE_DOWN_P, controls.NOTE_SPACE, controls.NOTE_UP_P, controls.NOTE_RIGHT_P];
 			var controlArray:Array<Bool> = [controls.NOTE_LEFT_P, controls.NOTE_DOWN_P, controls.NOTE_UP_P, controls.NOTE_RIGHT_P];
 			if(controlArray.contains(true))
 			{
