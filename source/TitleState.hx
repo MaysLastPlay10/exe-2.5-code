@@ -389,7 +389,7 @@ class TitleState extends MusicBeatState
 					remove(titleText); // incase someone turned flashing off
 					FlxG.sound.music.stop();
 					//MusicBeatState.switchState(new EXEInfoState());
-				Application.current.window.alert('A FATAL ERROR HAS OCCURRED', 'Vs Sonic.exe Android');
+				Application.current.window.alert('APRIL FOOLS PRANK', 'Vs Sonic.exe Android');
          Application.current.window.close();
 
 					/*var video = new MP4Handler();
