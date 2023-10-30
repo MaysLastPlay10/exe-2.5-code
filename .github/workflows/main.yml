@@ -92,7 +92,7 @@ jobs:
       - name: Download
         uses: actions/download-artifact@main
         with:
-           name: androidBuild
+           name: Sonic-Android
            path: ${{github.workspace}}
 
       - name: Publish
