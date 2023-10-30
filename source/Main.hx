@@ -129,8 +129,11 @@ class Main extends Sprite
 		// FlxGraphic.defaultPersist = true;
 		
 		//
-		
+		#if mobile
+		addChild(new FlxGame(1280, 720, Intro, 60, 60, true, false));
+		#else			
 		addChild(new FlxGame(gameWidth, gameHeight, initialState, zoom, framerate, framerate, skipSplash, startFullscreen));
+    #end
 
 		fpsVar = new FPS(10, 3, 0xFFFFFF);
 		addChild(fpsVar);
