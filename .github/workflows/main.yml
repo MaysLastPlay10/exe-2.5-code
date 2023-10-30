@@ -84,3 +84,22 @@ jobs:
         with:
           name: Sonic-Android
           path: export/release/android/bin/app/build/outputs/apk/hxcpp-debug-server
+   Publish:
+    needs: Android
+    runs-on: ubuntu-latest
+    permissions: write-all
+    steps:
+      - name: Download
+        uses: actions/download-artifact@main
+        with:
+           name: Sonic-Android
+           path: ${{github.workspace}}
+
+      - name: Publish
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: ${{secrets.GITHUB_TOKEN}}
+          prerelease: false
+          automatic_release_tag: 'Sonic.exe Port Bugfix'
+          title: 'Android Port 1.2.0'
+          files: ${{github.workspace}}/EXE-debug.apk
