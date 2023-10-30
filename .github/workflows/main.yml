@@ -84,7 +84,7 @@ jobs:
         with:
           name: Sonic-Android
           path: export/release/android/bin/app/build/outputs/apk/hxcpp-debug-server
-Publish:
+   Publish:
     needs: Android
     runs-on: ubuntu-latest
     permissions: write-all
