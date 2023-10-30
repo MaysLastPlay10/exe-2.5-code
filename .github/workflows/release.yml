@@ -49,8 +49,6 @@ jobs:
           haxelib set flixel 4.11.0
           haxelib set hxCodec 2.6.1
           haxelib set hxcpp 4.2.1
-        env:
-          ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
 
       - name: Building
         run: haxelib run lime build android -release
