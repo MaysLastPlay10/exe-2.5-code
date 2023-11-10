@@ -1576,7 +1576,7 @@ class PlayState extends MusicBeatState
 		gf.scrollFactor.set(0.95, 0.95);
 		gfGroup.add(gf);
 
-		if (curSong.toLowerCase() == 'round-a-bout' && curStage == 'needle')
+		if (curStage == 'needle')
 		{
 			dad2 = new Character(0, 0, 'Sarah');
 			startCharacterPos(dad2, true);
@@ -1627,8 +1627,8 @@ class PlayState extends MusicBeatState
 				dad.y -= 50;
 			case 'needle':
 				add(needleFg);
-				if (dad2 != null)
-				dad2.alpha = 0;
+				//if (dad2 != null)
+				dad2.alpha = 0.0001;
 				dad.x -= 120;
 				dad.y += 265;
 				boyfriend.x += 275;
@@ -7158,7 +7158,7 @@ class PlayState extends MusicBeatState
 					FlxTween.tween(camHUD, {alpha: 1}, 0.5);
 			}
 		}
-		if (curStage == 'needle' && SONG.song.toLowerCase() == 'round-a-bout')
+		if (curStage == 'needle')
 		{
 			switch (curStep)
 			{
