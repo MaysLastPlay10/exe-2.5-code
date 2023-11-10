@@ -301,8 +301,8 @@ class PlayState extends MusicBeatState
 	var startCircle:FlxSprite;
 	var startText:FlxSprite;
 	// - dad 2 things (namely needlemouse)
-	//public var dad2:Character;
-	//public var dad2Group:FlxSpriteGroup; // going to use this for needle/sarah (avery)
+	public var dad2:Character;
+	public var dad2Group:FlxSpriteGroup; // going to use this for needle/sarah (avery)
 	// - camera bullshit
 	var dadCamThing:Array<Int> = [0, 0];
 	var bfCamThing:Array<Int> = [0, 0];
@@ -631,7 +631,7 @@ class PlayState extends MusicBeatState
 
 		boyfriendGroup = new FlxSpriteGroup(BF_X, BF_Y);
 		dadGroup = new FlxSpriteGroup(DAD_X, DAD_Y);
-		//dad2Group = new FlxSpriteGroup(DAD_X, DAD_Y); // should load right on top of dad? hopefully lmao (avery)
+		dad2Group = new FlxSpriteGroup(DAD_X, DAD_Y); // should load right on top of dad? hopefully lmao (avery)
 		gfGroup = new FlxSpriteGroup(GF_X, GF_Y);
 
 		switch (curStage)
@@ -1503,7 +1503,7 @@ class PlayState extends MusicBeatState
 		{
 			case 'needle':
 				add(gfGroup);
-				//add(dad2Group);
+				add(dad2Group);
 				add(dadGroup);
 				add(boyfriendGroup);
 			default:
@@ -1534,21 +1534,20 @@ class PlayState extends MusicBeatState
 				add(fgTree2);
 			case 'DDDDD':
 				gfGroup.visible = false;
-				var vcr:VCRDistortionShader;
-				vcr = new VCRDistortionShader();
-
 				var daStatic:BGSprite = new BGSprite('daSTAT', 0, 0, 1.0, 1.0, ['staticFLASH'], true);
 				daStatic.cameras = [camHUD];
 				daStatic.setGraphicSize(FlxG.width, FlxG.height);
 				daStatic.screenCenter();
 				daStatic.alpha = 0.05;
 				add(daStatic);
-
+        if (ClientPrefs.shaders){
+				var vcr:VCRDistortionShader;
+				vcr = new VCRDistortionShader();
 				curShader = new ShaderFilter(vcr);
-
 				camGame.setFilters([curShader]);
 				camHUD.setFilters([curShader]);
 				camOther.setFilters([curShader]);
+        }
 			case 'hog':
 				gfGroup.visible = false;
 				add(hogRocks);
@@ -1560,7 +1559,7 @@ class PlayState extends MusicBeatState
 
 		trace(boyfriendGroup);
 		trace(dadGroup);
-		//trace(dad2Group);
+		trace(dad2Group);
 		trace(gfGroup);
 
 		var gfVersion:String = SONG.player3;
@@ -1579,12 +1578,12 @@ class PlayState extends MusicBeatState
 		gf.scrollFactor.set(0.95, 0.95);
 		gfGroup.add(gf);
 
-		/*if (curSong.toLowerCase() == 'round-a-bout' && curStage == 'needle')
+		if (curSong.toLowerCase() == 'round-a-bout' && curStage == 'needle')
 		{
-			dad2 = new Character(0, 0, 'sarah');
+			dad2 = new Character(0, 0, 'Sarah');
 			startCharacterPos(dad2, true);
 			dad2Group.add(dad2);
-		}*/
+		}
 
 		dad = new Character(0, 0, SONG.player2);
 		startCharacterPos(dad, true);
@@ -1630,15 +1629,14 @@ class PlayState extends MusicBeatState
 				dad.y -= 50;
 			case 'needle':
 				add(needleFg);
-				//dad2.alpha = 0.1;
-
+				dad2.alpha = 0;
 				dad.x -= 120;
 				dad.y += 265;
 				boyfriend.x += 275;
 				boyfriend.y += 280;
 				gf.x += 1000;
 				gf.y += 350;
-				/*dad2.x -= 150;
+				dad2.x -= 150;
 				dad2.y += 25;
 
 				flyTarg = dad2; // fucking smart genious and intellegent*/
@@ -4628,10 +4626,10 @@ class PlayState extends MusicBeatState
 							else if (curStage == 'needle')
 							{
 								dad.playAnim(animToPlay + altAnim, true);
-								//dad2.playAnim(animToPlay + altAnim, true);
+								dad2.playAnim(animToPlay + altAnim, true);
 
 								dad.holdTimer = 0;
-								//dad2.holdTimer = 0;
+								dad2.holdTimer = 0;
 							}
 							else
 							{
@@ -6856,7 +6854,9 @@ class PlayState extends MusicBeatState
 		var video:VideoSprite = new VideoSprite(0,0);
 		video.scrollFactor.set();
 		video.cameras = [camHUD];
+		if (ClientPrefs.shaders){
 		video.shader = new GreenScreenShader();
+		}
 		video.visible = false;
 		video.playVideo(Paths.video(name));
 		video.openingCallback = function() {
@@ -7161,7 +7161,7 @@ class PlayState extends MusicBeatState
 					FlxTween.tween(camHUD, {alpha: 1}, 0.5);
 			}
 		}
-		/*if (curStage == 'needle' && SONG.song.toLowerCase() == 'round-a-bout')
+		if (curStage == 'needle' && SONG.song.toLowerCase() == 'round-a-bout')
 		{
 			switch (curStep)
 			{
@@ -7182,11 +7182,10 @@ class PlayState extends MusicBeatState
 							oki = -0.01;
 						}
 						dad2.alpha += oki;
-
-	  					oki = 0.0;
+						ok.reset();
 					});
 			}
-		}*/
+		}
 		if (SONG.song.toLowerCase() == 'fight or flight')
 		{
 			switch (curStep)
@@ -7947,7 +7946,7 @@ class PlayState extends MusicBeatState
 							case 408, 410, 412, 472, 474, 476, 536, 538, 540, 600, 602, 604, 682, 710, 745, 808, 825, 872, 888:
 								festSpinPlayer();
 							case 912:
-								if(ClientPrefs.flashing && weedVis!=null){
+								if(ClientPrefs.flashing && weedVis!=null && ClientPrefs.shaders){
 									curShader = new ShaderFilter(weedVis);
 									camGame.setFilters([curShader]);
 									camHUD.setFilters([curShader]);
