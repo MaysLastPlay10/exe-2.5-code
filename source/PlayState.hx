@@ -1627,6 +1627,7 @@ class PlayState extends MusicBeatState
 				dad.y -= 50;
 			case 'needle':
 				add(needleFg);
+				if (dad2 != null)
 				dad2.alpha = 0;
 				dad.x -= 120;
 				dad.y += 265;
