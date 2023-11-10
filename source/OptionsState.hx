@@ -470,6 +470,7 @@ class PreferencesSubstate extends MusicBeatSubstate
 		'GRAPHICS',
 		'Low Quality',
 		'Anti-Aliasing',
+    'Shaders',
 		'Persistent Cached Data',
 		'Gore',
 		'Improved Hold Renderer',
@@ -639,8 +640,8 @@ class PreferencesSubstate extends MusicBeatSubstate
 
 					case 'Low Quality':
 						ClientPrefs.lowQuality = !ClientPrefs.lowQuality;
-
-					case 'Anti-Aliasing':
+                    
+                    case 'Anti-Aliasing':
 						ClientPrefs.globalAntialiasing = !ClientPrefs.globalAntialiasing;
 						showCharacter.antialiasing = ClientPrefs.globalAntialiasing;
 						for (item in grpOptions) {
@@ -654,6 +655,8 @@ class PreferencesSubstate extends MusicBeatSubstate
 						}
 						OptionsState.menuBG.antialiasing = ClientPrefs.globalAntialiasing;
 
+                        case 'Shaders':
+                            ClientPrefs.shaders = ! ClientPrefs.shaders;
 					case 'Note Splashes':
 						ClientPrefs.noteSplashes = !ClientPrefs.noteSplashes;
 
@@ -763,6 +766,8 @@ class PreferencesSubstate extends MusicBeatSubstate
 
 		var daText:String = '';
 		switch(options[curSelected]) {
+            case 'Shaders':
+                daText = "If unchecked, the shaders will be disabled";
 			case 'Framerate':
 				daText = "Pretty self explanatory, isn't it?\nDefault value is 60.";
 			case 'Note Delay':
@@ -849,6 +854,8 @@ class PreferencesSubstate extends MusicBeatSubstate
 			if(checkbox != null) {
 				var daValue:Bool = false;
 				switch(options[checkboxNumber[i]]) {
+                    case 'Shaders':
+                        daValue = ClientPrefs.shaders;
 					case 'FPS Counter':
 						daValue = ClientPrefs.showFPS;
 					case 'Low Quality':
