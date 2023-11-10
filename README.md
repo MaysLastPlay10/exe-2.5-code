@@ -14,5 +14,5 @@
 - **Nuno Filipe Studios** - Help with fixing bugs
 --------------------
 ### Port Update:
-- Out Now (v1.1)
+- Out Now (v1.2)
  
