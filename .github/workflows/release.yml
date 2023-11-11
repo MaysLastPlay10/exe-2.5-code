@@ -89,4 +89,4 @@ jobs:
           prerelease: false
           automatic_release_tag: 'Sonic.exe Port v1.2'
           title: 'Android Port v1.2'
-          files: ${{github.workspace}}/EXE-debug.apk
+          files: ${{github.workspace}}/Vs Sonic.exe-debug.apk
