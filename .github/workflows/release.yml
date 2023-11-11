@@ -7,15 +7,23 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@main
+      - name: Setup Android NDK
+        uses: nttld/setup-ndk@main
+        id: setup-ndk
+        with:
+          ndk-version: r21e
 
-      - name: Setup Java
+      - name: Setup Java JDK
         uses: actions/setup-java@main
         with:
-          java-version: '11'
           distribution: 'zulu'
+          java-version: 18
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@main
 
       - name: Setup Haxe
-        uses: krdlab/setup-haxe@master
+        uses: krdlab/setup-haxe@v1.2.0
         with:
           haxe-version: 4.2.5
 
@@ -39,8 +47,7 @@ jobs:
         run: echo "${{github.run_id}}" > VERSION
 
       - name: Setup Lime
-        run: |
-          haxelib run lime setup -alias -y
+        run: |          haxelib run lime setup -alias -y
           haxelib run lime config ANDROID_SDK $ANDROID_HOME
           haxelib run lime config ANDROID_NDK_ROOT $ANDROID_NDK_HOME
           haxelib run lime config JAVA_HOME $JAVA_HOME
@@ -51,6 +58,8 @@ jobs:
           haxelib set lime 7.9.0
           haxelib set hxCodec 2.6.1
           haxelib set hxcpp 4.2.1
+        env:
+          ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
 
       - name: Building
         run: haxelib run lime build android -release
