@@ -75,6 +75,6 @@ jobs:
         with:
           repo_token: ${{secrets.GITHUB_TOKEN}}
           prerelease: false
-          automatic_release_tag: 'Sonic.exe Port v1.2.0'
-          title: 'Android Port v1.2.0'
+          automatic_release_tag: 'Sonic.exe Port v1.2'
+          title: 'Android Port v1.2'
           files: ${{github.workspace}}/EXE-debug.apk
